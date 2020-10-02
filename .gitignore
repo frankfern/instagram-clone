@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+#media
+
+/media/*
+
+
+#cache
+/__pycache__/*
