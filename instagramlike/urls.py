@@ -25,10 +25,11 @@ from instagramlike import views as localviews
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('sorted/',localviews.sort_integers),
-    path('hi/<str:name>/<int:age>/',localviews.say_hi),
+    path('admin/', admin.site.urls,name='admin'),
+    path('sorted/',localviews.sort_integers,name='sort'),
+    path('hi/<str:name>/<int:age>/',localviews.say_hi,name='hi'),
     path('posts/',include('posts.urls')),
+    path('accounts/', include('users.urls')),
     
 
 
