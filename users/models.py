@@ -8,7 +8,7 @@ class Profile(models.Model):
     Proxy model that extends the base data with other information.    
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    website= models.URLField(blank=True)
+    website= models.URLField(blank=True,max_length =200)
     biography =models.TextField(blank=True)
     phone_number=models.CharField(max_length=20,blank =True)
 

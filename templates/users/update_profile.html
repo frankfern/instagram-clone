@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block head_content %}    
@@ -7,6 +8,62 @@
     
 
 {% block container%}
-    <h1 class="mt-5">@{{request.user.username}}</h1>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-6 p-4" id="profile-box">
+
+                <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    
+                    {% if form.errors %}    
+                        <p class="alert alert-danger">{{form.errors}}</p>
+                    {% endif %}
+                        
+
+                    <div class="media">
+                        
+                        {% if profile.picture %}
+                            <img src="{{ profile.picture.url }}" alt="" class="rounded-circle" height="50"/>
+                        {% else %}
+                            <img src="{% static 'img//default-profile.png' %}" alt="" class="rounded-circle" height="50"/>
+                        {% endif %}
+                        
+                        <div class="media-body">
+                            <h5 class="ml-4">@{{user.username}} | {{user.get_full_name}}</h5>
+                            <p class="ml-4"><input type="file" name="picture" id="" required='true'></p>
+                        </div>
+                    </div>
+
+                    <hr><br>
+
+                    <div class="form-group">
+                        <label>Website</label>
+                        <input 
+                            type="url" 
+                            name="website"
+                            class="form-control" 
+                            placeholder="Website"
+                            value="{{ profile.website}}"  
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label>Biography</label>
+                        <textarea name="biography" id="" class="form-control">{{ profile.biography }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input 
+                            type="text" 
+                            name="phone_number" 
+                            class="form-control" 
+                            placeholder="Phone_number"
+                            value="{{ profile.phone_number}}"
+                        />
+                    </div>
+                    <button type="submit" class=" btn btn-primary btn-block mt-5">Update Info</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
 {% endblock container%}
     
