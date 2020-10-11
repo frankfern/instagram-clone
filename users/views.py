@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
 
 from .models import Profile
-from .forms import ProfileForm
+from .forms import ProfileForm,SignupForm
 
 def update_profile(request):
 
@@ -24,7 +24,7 @@ def update_profile(request):
             profile.save()
 
             return redirect('update_profile')
-
+ 
             
     else:
         form =ProfileForm()
@@ -61,32 +61,17 @@ def logout_view(request):
 
 def sign_up(request):
 
-
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        password2 = request.POST['password_confirmation']
-        
-
-        if password != password2:
-            return render(request, 'users/signup.html',{'error':'password confirmation doesnt match'})
-
-        try:
-            user = User.objects.create_user(username=username,password=password)
-        
-        except IntegrityError:
-            return render(request, 'users/signup.html',{'error':'Username is already in user'})
-
-        user.email = request.POST['email']
-        user.first_name = request.POST['first_name']
-        user.last_name = request.POST['last_name']
-        user.save()
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = SignupForm()
+        return render(request,'users/signup.html',{'form':form})
 
 
-        profile=Profile(user=user)
-        profile.save()
-
-        return redirect('login')
 
 
-    return render(request, 'users/signup.html' )
+
+   
