@@ -19,20 +19,11 @@ from django.conf import settings
 from django.urls import path,include
 
 
-
-from instagramlike import views as localviews
-
-
-
 urlpatterns = [
+
     path('admin/', admin.site.urls,name='admin'),
-    path('sorted/',localviews.sort_integers,name='sort'),
-    path('hi/<str:name>/<int:age>/',localviews.say_hi,name='hi'),
-    path('posts/',include('posts.urls')),
-    path('accounts/', include('users.urls')),
-    
-
-
+    path('',include(('posts.urls','posts'),namespace = 'posts')),
+    path('users/', include(('users.urls','users'),namespace ='users')),
 
 ]+static(settings.MEDIA_URL,document_root= settings.MEDIA_ROOT)
 
