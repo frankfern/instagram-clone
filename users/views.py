@@ -8,6 +8,10 @@ from .models import Profile
 from posts.models import Post
 from .forms import SignupForm
 
+
+def hola(request):
+    request.
+
 class UserDetailView(LoginRequiredMixin,DetailView):
     model = User
     template_name = "users/detail.html"
@@ -51,7 +55,7 @@ class SignupView(FormView):
 class Login(auth_views.LoginView):
     """Login """
     template_name = 'users/login.html'
-
+    
 class Logout(auth_views.LogoutView):
     """Logout """
 
