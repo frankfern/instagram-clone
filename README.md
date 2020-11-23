@@ -1,2 +1,2 @@
 # ig_like
-Un clon de Instagram (Practica)
+Practicando django haciendo un clon de Instagram 
