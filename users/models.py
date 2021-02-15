@@ -1,6 +1,9 @@
 #django
 from django.db import models
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from allauth.account.signals import user_signed_up
+
 
 
 class Profile(models.Model):
@@ -23,3 +26,11 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+@receiver(user_signed_up)
+def create_user_profile(request, user, **kwargs):
+    """ Create user profile when sign up with Facebook """
+
+    profile = Profile.objects.create(user=user)
+    profile.save()

@@ -29,19 +29,29 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
-INSTALLED_APPS = [
-    #django apps
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #local apps
+)
+THIRD_PARTY_APPS = (
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+)
+LOCAL_APPS = (
     'posts',
     'users',
-]
+)
+
+SITE_ID = 1
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,11 +61,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'instagramlike.middleware.ProfileCompletationMiddleware',
+    'config.middleware.ProfileCompletationMiddleware',
 ]
 
-ROOT_URLCONF = 'instagramlike.urls'
+ROOT_URLCONF = 'config.urls'
 
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -140,3 +155,34 @@ MEDIA_URL = '/media/'
 LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/list'
 LOGOUT_REDIRECT_URL = LOGIN_URL 
+
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.12',
+    }
+}
+
+SOCIAL_AUTH_FACEBOOK_KEY = '*******'
+SOCIAL_AUTH_FACEBOOK_SECRET = '*******'
