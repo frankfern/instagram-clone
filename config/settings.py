@@ -47,6 +47,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'posts',
     'users',
+    'like',
 )
 
 SITE_ID = 1
@@ -89,7 +90,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'instagramlike.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database

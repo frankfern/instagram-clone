@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls,name='admin'),
     path('',include(('posts.urls','posts'),namespace = 'posts')),
     path('users/', include(('users.urls','users'),namespace ='users')),
+    path('likes/', include(('like.urls','likes'),namespace ='likes')),
     path('accounts/', include('allauth.urls')),
 
 
