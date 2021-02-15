@@ -13,7 +13,6 @@ class LikeView(View):
         post_id = kwargs['pk']
 
         post = Post.objects.get(pk=post_id)
-        print(post)
 
         like = Like.objects.filter(user=user).filter(post=post_id)
 

@@ -48,6 +48,7 @@ LOCAL_APPS = (
     'posts',
     'users',
     'like',
+    'comments',
 )
 
 SITE_ID = 1
