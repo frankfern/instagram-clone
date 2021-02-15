@@ -1,6 +1,6 @@
 # instagram-clone
 
-This minimal project is inspired by Instagram made in Django following the Django Course on [Platzi](https://platzi.com/).
+This minimal project is inspired by Instagram made in Django following the Django Course on [Platzi](https://platzi.com/cursos/django/).
 
 ## Software Requirements
 
@@ -21,15 +21,3 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 ```
-
-## Course
-
-[Platzi Django Course](https://platzi.com/cursos/django/)
-
-### Extras
-
-- [Tutorial: Crea un Login Social con Django](https://platzi.com/blog/tutorial-login-social-con-django/)
-
-## License
-
-[This project is under MIT License](https://opensource.org/licenses/MIT)
