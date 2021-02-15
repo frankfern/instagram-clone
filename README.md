@@ -1,6 +1,6 @@
 # instagram-clone
 
-This minimal project is inspired by Instagram made in Django following the Django Course on [Platzi](https://platzi.com/cursos/django/).
+This minimal project is inspired by Instagram, made in Django following the Django Course on [Platzi](https://platzi.com/cursos/django/).
 
 ## Software Requirements
 
