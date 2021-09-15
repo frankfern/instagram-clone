@@ -78,7 +78,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'templates',
-            ],
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,8 +103,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
 
 
 # Password validation
@@ -144,8 +142,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS=(BASE_DIR / 'static',)
-STATIC_ROOT=STATICFILES_DIRS
+STATICFILES_DIRS = (BASE_DIR / 'static',)
+STATIC_ROOT = str(STATICFILES_DIRS)
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
@@ -157,7 +155,7 @@ MEDIA_URL = '/media/'
 
 LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/list'
-LOGOUT_REDIRECT_URL = LOGIN_URL 
+LOGOUT_REDIRECT_URL = LOGIN_URL
 
 
 ACCOUNT_EMAIL_VERIFICATION = "none"
