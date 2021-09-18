@@ -5,3 +5,5 @@ Django
 django-allauth
 
 django-environ
+
+psycopg2 --no-binary psycopg2
