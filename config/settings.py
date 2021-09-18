@@ -43,6 +43,7 @@ THIRD_PARTY_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
+    'gunicorn',
 )
 LOCAL_APPS = (
     'posts',
@@ -65,6 +66,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'config.middleware.ProfileCompletationMiddleware',
 ]
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 ROOT_URLCONF = 'config.urls'
 
@@ -100,7 +102,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-    }
+        'CONN_MAX_AGE': env.int('CONN_MAX_AGE', default=60)}
 }
 DATABASES['default'] = env.db('DATABASE_URL')  # NOQA
 

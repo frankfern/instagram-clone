@@ -7,3 +7,7 @@ django-allauth
 django-environ
 
 psycopg2 --no-binary psycopg2
+
+gunicorn
+
+whitenoise
