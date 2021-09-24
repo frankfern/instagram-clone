@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import environ
 from pathlib import Path
+from datetime import timedelta
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,8 +24,9 @@ env = environ.Env()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'mqlsky0^+gl461e2%xlf-#b=b@ci4=$j=4b&h=i)8c^)_)b6re'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# Base
+DEBUG = env.bool('DJANGO_DEBUG', False)
+
 
 ALLOWED_HOSTS = ['instagram-clonef.herokuapp.com']
 
@@ -43,7 +46,6 @@ THIRD_PARTY_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
-    'gunicorn',
 )
 LOCAL_APPS = (
     'posts',
@@ -52,9 +54,10 @@ LOCAL_APPS = (
     'comments',
 )
 
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
 SITE_ID = 1
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -99,12 +102,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'CONN_MAX_AGE': env.int('CONN_MAX_AGE', default=60)}
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': str(BASE_DIR('env/DB.cnf')),
+        },
+    }
 }
-DATABASES['default'] = env.db('DATABASE_URL')  # NOQA
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 
 # Password validation
@@ -139,8 +146,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static  files
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Security
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
