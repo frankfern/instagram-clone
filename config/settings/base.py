@@ -15,14 +15,12 @@ from datetime import timedelta
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = environ.Path(__file__) - 3
 
 env = environ.Env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'mqlsky0^+gl461e2%xlf-#b=b@ci4=$j=4b&h=i)8c^)_)b6re'
 
 # Base
 DEBUG = env.bool('DJANGO_DEBUG', False)
@@ -82,7 +80,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates',
+            str(BASE_DIR.path('templates')),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -107,7 +105,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': str(BASE_DIR('env/DB.cnf')),
+            'read_default_file': str(BASE_DIR.path('env/DB.cnf'))
+
         },
     }
 }
@@ -157,14 +156,16 @@ X_FRAME_OPTIONS = 'DENY'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (BASE_DIR / 'static',)
-STATIC_ROOT = str(STATICFILES_DIRS)
+STATICFILES_DIRS = [
+    str(BASE_DIR.path('static')),
+]
+STATIC_ROOT = str(BASE_DIR('staticfiles'))
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 ]
 
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = str(BASE_DIR.path('media'))
 MEDIA_URL = '/media/'
 
 

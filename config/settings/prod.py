@@ -31,7 +31,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 
 
 # Gunicorn
-INSTALLED_APPS += ['gunicorn']  # noqa F405
+INSTALLED_APPS += ('gunicorn',)  # noqa F405
 
 
 # Cache

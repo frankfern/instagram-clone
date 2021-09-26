@@ -26,4 +26,4 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG  # NOQA
 
 
 # django-extensions
-INSTALLED_APPS += ['django_extensions']  # noqa F405
+INSTALLED_APPS += ('django_extensions', )  # noqa F405
