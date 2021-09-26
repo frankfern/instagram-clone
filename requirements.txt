@@ -6,7 +6,7 @@ django-allauth
 
 django-environ
 
-
+psycopg2==2.8.6 --no-binary psycopg2
 
 gunicorn
 
@@ -16,3 +16,7 @@ django_extensions
 
 
 mysqlclient
+
+# Redis
+redis==3.5.3
+django-redis==4.12.1
