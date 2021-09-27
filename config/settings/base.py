@@ -104,10 +104,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        # 'OPTIONS': {
-        #     # 'read_default_file': str(BASE_DIR.path('env/DB.cnf'))
+        'OPTIONS': {
+            # 'read_default_file': str(BASE_DIR.path('env/DB.cnf'))
 
-        # },
+        },
     }
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
@@ -146,11 +146,11 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Security
-SESSION_COOKIE_HTTPONLY = True
-CSRF_COOKIE_HTTPONLY = True
-SECURE_BROWSER_XSS_FILTER = True
-X_FRAME_OPTIONS = 'DENY'
+# # Security
+# SESSION_COOKIE_HTTPONLY = True
+# CSRF_COOKIE_HTTPONLY = True
+# SECURE_BROWSER_XSS_FILTER = True
+# X_FRAME_OPTIONS = 'DENY'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
