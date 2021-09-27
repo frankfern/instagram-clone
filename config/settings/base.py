@@ -104,10 +104,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': str(BASE_DIR.path('env/DB.cnf'))
+        # 'OPTIONS': {
+        #     # 'read_default_file': str(BASE_DIR.path('env/DB.cnf'))
 
-        },
+        # },
     }
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True

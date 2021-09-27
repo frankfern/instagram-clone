@@ -7,7 +7,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=[
-                         'api-eworkshop.herokuapp.com'])
+                         'https://instagram-clonef.herokuapp.com', '127.0.0.1', 'localhost'])
 
 DEBUG = False
 
